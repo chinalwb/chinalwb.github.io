@@ -1,9 +1,21 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.chinalwb.myamplifyapp",
-    "sha256_cert_fingerprints":
-    ["E3:0B:95:E8:19:26:6A:AF:F7:E3:14:23:07:AB:A1:CF:D8:36:8F:CC:A7:B2:71:13:52:43:DA:20:FB:D6:C5:71"]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.chinalwb.myamplifyapp",
+      "sha256_cert_fingerprints":
+      ["E3:0B:95:E8:19:26:6A:AF:F7:E3:14:23:07:AB:A1:CF:D8:36:8F:CC:A7:B2:71:13:52:43:DA:20:FB:D6:C5:71"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "co.pactplatform.nations.development",
+      "sha256_cert_fingerprints":
+      ["E3:0B:95:E8:19:26:6A:AF:F7:E3:14:23:07:AB:A1:CF:D8:36:8F:CC:A7:B2:71:13:52:43:DA:20:FB:D6:C5:71"]
+    }
   }
-}]
+
+]
