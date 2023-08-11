@@ -1,4 +1,6 @@
 {
+    "short_name": "chinalwb",
+    "name": "chinalwb: Do I need an umbrella?",
     "related_applications": [{
         "platform": "play",
         "id": "com.renren.android.chimesite.debug"
