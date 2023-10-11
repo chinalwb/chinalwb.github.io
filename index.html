@@ -8,22 +8,19 @@
     <a href="nations://validatecode?email=muranhu@gmail.com&code=123456&redirectViewUri=/app/home">Open Nations App</a>
 
     <br />
-    <h6>Checking installed apps.</h6>
+    
+    <h3>Checking installed apps.</h3>
+    <p><a href="https://battle-saturnalia-ca8.notion.site/How-to-detect-whether-the-app-has-been-installed-or-not-44318f7dfc9a4e95bf2a53d2ed1e7b08?pvs=4">My Notion Notes</a></p>
     <br />
     <a href="chimesiteweb://">Open Closely App</a>
     <br />
     <a href="market://details?id=com.renren.android.chimesite">Download Closely App</a>
     <br />
-    <br />
     <a id="modal-open" class="modal-button open" target="_blank" rel="noopener" onclick="document.body.classList.remove('show-modal');" 
-      href="chimesiteweb://open?agentId=500447372337247\&type=Identify_AgentId_Link">
-              Open
-            </a>
-
-    <br />
+      href="chimesiteweb://open?agentId=500447372337247\&type=Identify_AgentId_Link">Open</a>
     <br />
     <p> OK, for starting android app from browser, the tricky part is not at the HTML side, actually we should pay attention to the launchMode of the activity which responses to the deeplink click. For Closely App, I introduced a new activity: DeeplinkActivity, and set the launchMode to singleInstance, that way, everytime when user taps on a link, it goes to this activity, and in this activity, getIntent().getData() will return the link that was tapped.</p>
-      <a href="intent://open?agentId=500447372337247&type=Identify_AgentId_Link/#Intent;scheme=chimesiteweb;package=com.renren.android.chimesite;end"> With intent </a>
+    <a href="intent://open?agentId=500447372337247&type=Identify_AgentId_Link/#Intent;scheme=chimesiteweb;package=com.renren.android.chimesite;end"> With intent </a>
     <script src="/demo.js"></script>
   </body>
 </html>
