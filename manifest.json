@@ -1,6 +1,6 @@
 {
     "related_applications": [{
         "platform": "play",
-        "id": "com.renren.android.chimesite.debug"
+        "id": "com.renren.android.chimesite"
     }]
 }
