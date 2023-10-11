@@ -22,6 +22,7 @@
 
     <br />
     <br />
+    <p> OK, for starting android app from browser, the tricky part is not at the HTML side, actually we should pay attention to the launchMode of the activity which responses to the deeplink click. For Closely App, I introduced a new activity: DeeplinkActivity, and set the launchMode to singleInstance, that way, everytime when user taps on a link, it goes to this activity, and in this activity, getIntent().getData() will return the link that was tapped.</p>
       <a href="intent://open?agentId=500447372337247&type=Identify_AgentId_Link/#Intent;scheme=chimesiteweb;package=com.renren.android.chimesite;end"> With intent </a>
     <script src="/demo.js"></script>
   </body>
