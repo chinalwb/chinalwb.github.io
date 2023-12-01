@@ -39,5 +39,29 @@
         "EA:CE:8A:4D:8C:1D:FA:EF:D8:89:00:C6:A3:C4:09:D8:25:09:57:DE:A6:E0:3F:1F:6A:E7:B1:B4:D3:C7:CE:DA"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.renren.estate.android.debug",
+      "sha256_cert_fingerprints": [
+        "1E:DF:00:8D:5E:58:B3:E4:74:C6:D3:09:7E:B9:3E:91:18:82:A6:87:12:7C:3D:29:5C:33:90:AE:C9:8F:06:DA"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.renren.estate.android",
+      "sha256_cert_fingerprints": [
+        "18:3C:71:F4:4D:86:33:6D:55:64:8B:A1:F1:6D:46:E6:10:A8:67:1A:6A:E6:61:75:84:C8:B2:2B:49:35:55:9D"
+      ]
+    }
   }
 ]
