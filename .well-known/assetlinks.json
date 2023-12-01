@@ -1,5 +1,46 @@
 [
   {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.chinalwb.myamplifyapp",
+      "sha256_cert_fingerprints":
+      ["E3:0B:95:E8:19:26:6A:AF:F7:E3:14:23:07:AB:A1:CF:D8:36:8F:CC:A7:B2:71:13:52:43:DA:20:FB:D6:C5:71"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "co.pactplatform.nations.development",
+      "sha256_cert_fingerprints":
+      [
+        "AC:B0:03:03:90:D9:E0:DB:11:37:45:D5:77:11:75:BE:0F:40:C9:3D:ED:EF:95:B8:92:C6:E8:4E:FD:7E:DE:CF"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "co.pactplatform.onward.development",
+      "sha256_cert_fingerprints":
+      ["E3:0B:95:E8:19:26:6A:AF:F7:E3:14:23:07:AB:A1:CF:D8:36:8F:CC:A7:B2:71:13:52:43:DA:20:FB:D6:C5:71"]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "co.pactplatform.nations.production",
+      "sha256_cert_fingerprints": [
+        "EA:CE:8A:4D:8C:1D:FA:EF:D8:89:00:C6:A3:C4:09:D8:25:09:57:DE:A6:E0:3F:1F:6A:E7:B1:B4:D3:C7:CE:DA"
+      ]
+    }
+  },
+  {
     "relation": [
       "delegate_permission/common.handle_all_urls"
     ],
