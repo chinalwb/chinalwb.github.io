@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>EasyUI Combotree 示例</title>
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+    <input id="combotree" class="easyui-combotree" style="width:300px;" data-options="
+        url: 'https://chinalwb.github.io/tree_data.json',
+        method: 'get',
+        checkbox: true,
+        onlyLeafCheck: true
+    ">
+
+    <script type="text/javascript">
+        $(function(){
+            $('#combotree').combotree({
+                onClick: function(node) {
+                    var tree = $(this).combotree('tree');
+                    if (!tree('isLeaf', node.target)) {
+                        var children = tree('getChildren', node.target);
+                        var allLeafSelected = true;
+
+                        // 检查所有叶子节点是否都被选中
+                        for (var i = 0; i < children.length; i++) {
+                            if (tree('isLeaf', children[i].target) && !tree('isChecked', children[i].target)) {
+                                allLeafSelected = false;
+                                break;
+                            }
+                        }
+
+                        // 如果所有叶子节点都被选中，则取消选中所有叶子节点；否则选中所有叶子节点
+                        for (var i = 0; i < children.length; i++) {
+                            if (tree('isLeaf', children[i].target)) {
+                                if (allLeafSelected) {
+                                    tree('uncheck', children[i].target);
+                                } else {
+                                    tree('check', children[i].target);
+                                }
+                            }
+                        }
+                    }
+                },
+                onCheck: function(node, checked) {
+                    var tree = $(this).combotree('tree');
+                    if (!tree('isLeaf', node.target)) {
+                        // 阻止非叶子节点被选中
+                        tree('uncheck', node.target);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
