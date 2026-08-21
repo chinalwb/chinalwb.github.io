@@ -29,6 +29,11 @@
         data-container="#phone-slot" async></script>
 <!-- ================================================================ -->
 
+    <!-- The customer-chosen mount point. It appears AFTER the script tag in
+       the document, which is exactly why embed.js waits for DOMContentLoaded
+       before querying the selector. -->
+  <div id="phone-slot"></div>
+  
 <main>
   <h1>Softphone embed — Option C (loader script) demo</h1>
 
@@ -55,11 +60,6 @@
     <p><small>With the dialpad closed, the iframe is only 52px tall, so this
     button must remain clickable (no invisible click-stealing strip).</small></p>
   </div>
-
-  <!-- The customer-chosen mount point. It appears AFTER the script tag in
-       the document, which is exactly why embed.js waits for DOMContentLoaded
-       before querying the selector. -->
-  <div id="phone-slot"></div>
 
   <div class="card">
     <p>More host content, to show the overlay effect clearly. Open the
