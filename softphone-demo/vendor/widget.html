@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>网页软电话 (mock)</title>
+<style>
+  /* Root must size to content — NOT height:100%/100vh — or self-measurement
+     would just echo the iframe height back and loop. */
+  html, body { margin: 0; padding: 0; background: transparent; }
+  * { box-sizing: border-box; font-family: -apple-system, "PingFang SC", sans-serif; }
+
+  #toolbar {
+    height: 52px;
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 12px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .logo {
+    background: #3b82f6; color: #fff; font-weight: 700; font-size: 12px;
+    border-radius: 6px; padding: 6px 8px;
+  }
+  select, input {
+    height: 32px; border: 1px solid #d1d5db; border-radius: 6px; padding: 0 8px; font-size: 13px;
+  }
+  input { width: 160px; }
+  button {
+    height: 32px; padding: 0 14px; border: 0; border-radius: 6px;
+    font-size: 13px; cursor: pointer;
+  }
+  #callBtn { background: #3b82f6; color: #fff; }
+  #dialpadBtn { background: #eef2ff; color: #3b82f6; border: 1px solid #c7d2fe; }
+  #dialpadBtn.active { background: #3b82f6; color: #fff; }
+
+  /* Dropdown panel. Kept in normal flow so #app's height includes it and
+     the ResizeObserver sees the real total height. */
+  #dialpad {
+    display: none;
+    width: 216px;
+    margin: 8px 0 12px 236px;   /* roughly under the Dialpad button */
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #e5e7eb; border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  }
+  #dialpad.open { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  #dialpad button {
+    height: 44px; font-size: 17px; background: #f3f4f6; color: #111827;
+  }
+  #dialpad button:hover { background: #e5e7eb; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="toolbar">
+    <span class="logo">CC</span>
+    <select id="status">
+      <option value="ready">空闲</option>
+      <option value="offline">下线</option>
+    </select>
+    <input id="number" placeholder="输入号码">
+    <button id="callBtn">拨打</button>
+    <button id="dialpadBtn">拨号盘 ▾</button>
+  </div>
+  <div id="dialpad">
+    <!-- buttons injected by script -->
+  </div>
+</div>
+
+<script>
+  const app     = document.getElementById('app');
+  const pad     = document.getElementById('dialpad');
+  const padBtn  = document.getElementById('dialpadBtn');
+  const number  = document.getElementById('number');
+
+  for (const k of ['1','2','3','4','5','6','7','8','9','*','0','#']) {
+    const b = document.createElement('button');
+    b.textContent = k;
+    b.addEventListener('click', () => { number.value += k; });
+    pad.appendChild(b);
+  }
+
+  padBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    pad.classList.toggle('open');
+    padBtn.classList.toggle('active');
+  });
+
+  // Close when clicking the widget's empty (transparent) area — mimics
+  // normal dropdown blur behavior, and shrinks the iframe back down so it
+  // stops covering host content.
+  document.addEventListener('click', (e) => {
+    if (pad.classList.contains('open') && !pad.contains(e.target)) {
+      pad.classList.remove('open');
+      padBtn.classList.remove('active');
+    }
+  });
+
+  // The heart of Option C, widget side: measure ourselves, tell the parent.
+  // No height is hardcoded anywhere — the host applies whatever we report.
+  // Target origin '*': the vendor doesn't know each customer's origin, and
+  // the payload (a height) is not sensitive.
+  new ResizeObserver(() => {
+    parent.postMessage(
+      { type: 'softphone:resize', height: Math.ceil(app.getBoundingClientRect().height) },
+      '*'
+    );
+  }).observe(app);
+</script>
+</body>
+</html>

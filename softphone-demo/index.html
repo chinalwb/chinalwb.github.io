@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Softphone iframe embed demo (Option C — loader script)</title>
+<style>
+  body { margin: 0; font-family: -apple-system, "PingFang SC", sans-serif; background: #f9fafb; }
+  main { padding: 16px 24px; }
+  h1 { font-size: 20px; }
+  .card {
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+    padding: 16px; margin-bottom: 12px; max-width: 640px;
+  }
+  .note { background: #fffbeb; border-color: #fde68a; }
+  button { padding: 8px 14px; border: 0; border-radius: 6px; background: #10b981; color: #fff; cursor: pointer; }
+  code { background: #f3f4f6; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- ======= The ENTIRE embed. This is all a customer pastes. =======
+     data-container points at ANY element in the page — the widget mounts
+     there, so this tag's own position no longer matters (could live in
+     <head>). Delete the data-container attribute to fall back to
+     "mount right here at the tag". ============================ -->
+<script src="vendor/embed.js"
+        data-token="demo-token-123" data-mode="toolbar"
+        data-container="#phone-slot" async></script>
+<!-- ================================================================ -->
+
+<main>
+  <h1>Softphone embed — Option C (loader script) demo</h1>
+
+  <div class="card note">
+    <p><strong>What this demonstrates:</strong> a softphone toolbar embedded via a
+    single <code>&lt;script&gt;</code> line. The loader (<code>embed.js</code>) creates a 52px iframe;
+    when the 拨号盘 (dialpad) opens, the widget measures itself with a
+    <code>ResizeObserver</code> and posts its height to the loader via
+    <code>postMessage</code>, which grows the iframe so the dialpad
+    <em>overlays</em> the page — never clipped, never pushing content down.
+    No height is hardcoded anywhere.</p>
+    <p><small>Note: on GitHub Pages everything is served from one origin, so
+    unlike production (widget on the vendor's domain) this demo is
+    same-origin. The code paths are identical — the loader only ever talks to
+    the widget through <code>postMessage</code>, and the widget's origin and
+    URL are derived from the script's own <code>src</code>.</small></p>
+  </div>
+
+  <div class="card">
+    <p>This content sits directly below the softphone toolbar. When the
+    dialpad opens, it should <strong>overlay</strong> this card (not push it
+    down, not be clipped).</p>
+    <button id="clickme">Click me — clicks: <span id="count">0</span></button>
+    <p><small>With the dialpad closed, the iframe is only 52px tall, so this
+    button must remain clickable (no invisible click-stealing strip).</small></p>
+  </div>
+
+  <!-- The customer-chosen mount point. It appears AFTER the script tag in
+       the document, which is exactly why embed.js waits for DOMContentLoaded
+       before querying the selector. -->
+  <div id="phone-slot"></div>
+
+  <div class="card">
+    <p>More host content, to show the overlay effect clearly. Open the
+    dialpad in the toolbar above and it will cover this card; click any
+    empty area to close it again.</p>
+  </div>
+</main>
+
+<script>
+  const count = document.getElementById('count');
+  document.getElementById('clickme').addEventListener('click', () => {
+    count.textContent = String(Number(count.textContent) + 1);
+  });
+</script>
+</body>
+</html>
